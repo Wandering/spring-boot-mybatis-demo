@@ -1,0 +1,67 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: "sonar-runner"
+
+apply from: 'dependencies.gradle'
+sourceCompatibility = 1.7
+buildscript{
+    repositories{
+        jcenter()
+        mavenCentral()
+    }
+    dependencies{
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE"
+        classpath "org.springframework:springloaded:1.2.6.RELEASE"
+
+    }
+}
+
+/** 此闭包内的声明子类皆可使用 */
+allprojects {
+    group = 'cn.bwl.test'
+    version = '0.0.1-SNAPSHOT'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    idea{
+        module{
+            inheritOutputDirs= false
+            outputDir= file("$buildDir/classes/main/")
+        }
+    }
+
+
+}
+
+subprojects{
+
+    task "createJavaProject" << {
+        sourceSets*.java.srcDirs*.each { it.mkdirs() }
+        sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+
+        /** 填充文件，便于git提交 */
+        file("src/main/java/cn/bwl").mkdirs()
+        file("src/main/java/cn/bwl/package-info.java").createNewFile()
+        file("src/main/resources").mkdirs()
+        file("src/main/resources/application.yml").createNewFile()
+    }
+    dependencies {
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot
+        compile "org.springframework.boot:spring-boot:$SpringVersion"
+
+// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+        compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.1.0'
+
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+        compile "org.springframework.boot:spring-boot-starter-web:$SpringVersion"
+
+
+    }
+}

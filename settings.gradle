@@ -1,0 +1,4 @@
+rootProject.name = 'test'
+include 'test1-war'
+include 'test-service'
+
