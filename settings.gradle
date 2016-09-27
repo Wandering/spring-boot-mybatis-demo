@@ -1,4 +1,4 @@
-rootProject.name = 'test'
-include 'test1-war'
-include 'test-service'
+rootProject.name = 'spring-boot-mybatis-demo'
+include 'spring-boot-mybatis-war'
+include 'spring-boot-mybatis-service'
 

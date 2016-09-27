@@ -1,6 +1,6 @@
 apply plugin: 'war'
 dependencies {
         testCompile group: 'junit', name: 'junit', version: '4.11'
-        compile project(":test-service")
+        compile project(":spring-boot-mybatis-service")
 }
 

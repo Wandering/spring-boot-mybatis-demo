@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.bwl.dao.ITestDAO">
+
+    <select id="test" resultType="java.lang.Integer">
+        SELECT count(*) from zgk_major_base
+    </select>
+
+</mapper>
